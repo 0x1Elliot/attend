@@ -18,4 +18,26 @@ An Attention Rule represents how a hosts attention should be treated so that Att
 
 ## Booking
 
-A Booking represents this particular person has claimed this particular time for this particular Event Type so Attend can appropriately schedule the meeting
+A Booking represents this particular person has claimed this particular time for this particular Event Type so Attend can appropriately schedule the meeting.
+
+
+
+
+## Profile → Event Type
+
+Relationship:
+One-to-many
+
+Ownership:
+A Profile owns many Event Types.
+
+Why:
+One host can create multiple different meeting types, while each individual Event Type belongs to one host Profile in the MVP.
+
+
+
+
+# Fields & Data Types
+
+## Profile
+
