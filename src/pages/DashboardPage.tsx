@@ -1,73 +1,130 @@
-﻿import { Link } from "react-router-dom";
-import { PageHeader } from "../components/PageHeader";
-import { mockEvents } from "../lib/mockEvents";
+﻿import {
+  AttentionRulesSection,
+} from "../components/AttentionRulesSection";
+
+import {
+  AvailabilitySection,
+} from "../components/AvailabilitySection";
+
+import {
+  BookingsSection,
+} from "../components/BookingsSection";
+
+import {
+  EventCard,
+} from "../components/EventCard";
+
+import type {
+  AttentionRule,
+  AvailabilityWindow,
+  Booking,
+  EventType,
+} from "../types/domain";
+
+const events: EventType[] = [
+  {
+    id: "event-1",
+    title: "30-Minute Coffee Chat",
+    durationMinutes: 30,
+    status: "Active",
+  },
+];
+
+const availability: AvailabilityWindow[] = [
+  {
+    id: "availability-1",
+    day: "Mon",
+    startTime: "1:00 PM",
+    endTime: "5:00 PM",
+  },
+  {
+    id: "availability-2",
+    day: "Tue",
+    startTime: "10:00 AM",
+    endTime: "3:00 PM",
+  },
+];
+
+const attentionRules: AttentionRule[] = [];
+
+const bookings: Booking[] = [
+  {
+    id: "booking-1",
+    guestName: "Jordan Lee",
+    eventTitle: "30-Minute Coffee Chat",
+    date: "Sep 25",
+    time: "1:30 PM",
+    status: "Confirmed",
+  },
+  {
+    id: "booking-2",
+    guestName: "Morgan Reed",
+    eventTitle: "30-Minute Coffee Chat",
+    date: "Sep 29",
+    time: "11:00 AM",
+    status: "Confirmed",
+  },
+];
 
 export function DashboardPage() {
   return (
-    <div className="page">
+    <div className="dashboard-shell">
 
-      <PageHeader
-        eyebrow="Workspace"
-        title="Your events"
-        description="Create and manage the ways people can schedule time with you."
-        action={
-          <Link
-            className="button button-primary"
-            to="/events/new"
-          >
-            + Create event
-          </Link>
-        }
-      />
+      <header className="top-bar">
 
-      <section className="event-grid">
+        <div className="brand-mark">
+          ATTEND
+        </div>
 
-        {mockEvents.map((event) => (
+        <div className="host-pill">
+          Host workspace
+        </div>
 
-          <article
-            className="event-card"
-            key={event.id}
-          >
+      </header>
 
-            <div className="event-card-top">
+      <main className="dashboard">
 
-              <span className="status-dot" />
+        <section className="intro-section">
 
-              <span className="event-duration">
-                {event.durationMinutes} min
-              </span>
+          <p className="section-label">
+            Host UI
+          </p>
 
-            </div>
+          <h1>
+            Your Events
+          </h1>
 
-            <h2>{event.title}</h2>
+          <p className="intro-copy">
+            A static frontend representation of the
+            Attend scheduling domain.
+          </p>
 
-            <p>
-              {event.description}
-            </p>
+        </section>
 
-            <div className="event-card-actions">
+        <section className="event-section">
 
-              <Link
-                to={`/events/${event.id}`}
-                className="text-link"
-              >
-                Edit
-              </Link>
+          {events.map((event) => (
+            <EventCard
+              key={event.id}
+              event={event}
+            />
+          ))}
 
-              <Link
-                to={`/book/${event.slug}`}
-                className="text-link"
-              >
-                Booking page
-              </Link>
+        </section>
 
-            </div>
+        <AvailabilitySection
+          availability={availability}
+        />
 
-          </article>
+        <AttentionRulesSection
+          rules={attentionRules}
+        />
 
-        ))}
+        <BookingsSection
+          bookings={bookings}
+        />
 
-      </section>
+      </main>
 
     </div>
   );

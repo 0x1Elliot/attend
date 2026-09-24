@@ -4,16 +4,16 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-const rootElement =
+const root =
   document.getElementById("root");
 
-if (!rootElement) {
+if (!root) {
   throw new Error(
-    "Root element was not found."
+    "Root element not found."
   );
 }
 
-createRoot(rootElement).render(
+createRoot(root).render(
   <StrictMode>
     <App />
   </StrictMode>

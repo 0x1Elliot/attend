@@ -27,3 +27,14 @@ Thumbs.db
 
 # Temporary
 .tmp/
+# Attend local development
+# Local frontend backups
+backup-*
+backup-src-*
+backup-before-*
+# Build output
+
+# Local Attend helper scripts
+apply-attend-brand*.ps1
+build-static-domain-ui.ps1
+integrate-schema-foundation.ps1
